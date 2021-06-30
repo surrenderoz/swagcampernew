@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5>Image Grid</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for media in data %}
+            {% if media.to_dict.type == '.jpg' and '.png' %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="thumbnail mb-4">
+                    <div class="thumb">
+                        <a href="" data-lightbox="1" data-title="My caption 1">
+                            <img src="{{media.to_dict.img}}"  class="img-fluid img-thumbnail" max-width="200px" max-height="200px">
+                            <form action="" method="post" onsubmit="setTimeout(refresh, 6000)">
+                            {% csrf_token %}
+                                <input hidden type="text" value="{{media.id}}" name="docid">
+                                <input hidden type="text" value="{{media.to_dict.img}}" name="obj">
+                                <button class="btn btn-icon btn-danger"><i class="feather icon-trash-2"></i></button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Video Grid</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for media in data %}
+            {% if media.to_dict.type == '.mp4' and '.mkv' %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="thumbnail mb-4">
+                    <div class="thumb">
+                        <!-- <div class="embed-responsive embed-responsive-16by9"> -->
+        
+                            <video width="320" height="240" controls>
+                                <source src="{{media.to_dict.img}}" type="video/mp4">
+                              </video>
+                              <form action="" method="post" onsubmit="setTimeout(refresh, 6000)">
+                                {% csrf_token %}
+                                    <input hidden type="text" value="{{media.id}}" name="docid">
+                                    <input hidden type="text" value="{{media.to_dict.img}}" name="obj">
+                                    <button  class="btn btn-icon btn-danger"><i class="feather icon-trash-2"></i></button>
+                                </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div hidden id="ytVideo" class="card">
+    <div class="card-header">
+        <h5>Youtube Grid</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for media in data %}
+            {% if media.to_dict.type == 'ytVideo' %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="thumbnail mb-4">
+                    <div class="thumb">
+                        <!-- <div class="embed-responsive embed-responsive-16by9"> -->
+        
+                            <iframe class="col-md-12" width="420" height="315" src="{{media.to_dict.img}}" frameborder="0" allowfullscreen></iframe>
+
+                              <form action="" method="post" onsubmit="setTimeout(refresh, 6000)">
+                                {% csrf_token %}
+                                    <input hidden type="text" value="{{media.id}}" name="docid">
+                                    <input hidden type="text" value="{{media.to_dict.img}}" name="obj">
+                                    <button  class="btn btn-icon btn-danger"><i class="feather icon-trash-2"></i></button>
+                                </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<style>
+.img-thumbnail{
+    max-height: 200px!important;
+}
+
+</style>
+<script>
+var delay = 0;
+setTimeout(
+    function()
+    {
+        const El = document.getElementById('ytVideo')
+        El.removeAttribute('hidden')
+    },
+    delay
+);
+
+function refresh () {
+    preventDefault();
+    location.reload();
+}
+</script>
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card user-profile-list">
+            <div class="card-body">
+                <div class="dt-responsive table-responsive">
+                    <table id="user-list-table" class="table nowrap">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Event Name</th>
+                                <th>Event Location</th>
+                                <th>Event Date</th>
+                                <th>Event Message</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {% for event in data %}
+                            
+                            <tr><td>{{forloop.counter}}</td>
+                                <td>
+                                    {{event.to_dict.eventName}}
+                                </td>
+                                <td><h6 class="m-b-0">{{event.to_dict.eventLocation}}</h6></td>
+                                <td>{{event.to_dict.eventDate}}</td>
+                                <td>{{event.to_dict.eventMessage}}</td>
+                                
+                                <td>
+
+                                    <a  data-toggle="modal" data-target="#exampleModalCenter"  type="button" class="btn btn-icon btn-danger"><i class="feather icon-trash-2"></i><span class="ripple ripple-animate" style="height: 155.547px; width: 155.547px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(255, 255, 255); opacity: 0.4; top: -51.7735px; left: -2.50787px;"></span></a>
+                                    <a hidden id="deleteOk" href="{% url 'deleteEvent' event.id %}"></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Delet Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0">!!! Wanna Delete This Event !!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-secondary" data-dismiss="modal">nope😯</button>
+                <button onclick="deleteEvent() " type="button" class="btn  btn-danger">Yup!😉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$('#exampleModal').on('show.bs.modal', function(event) {
+		var button = $(event.relatedTarget)
+		var recipient = button.data('whatever')
+		var modal = $(this)
+		modal.find('.modal-title').text('New message to ' + recipient)
+		modal.find('.modal-body input').val(recipient)
+	})
+    function deleteEvent() {
+        document.getElementById('deleteOk').click()
+    }
+</script>
+
+{% endblock content %}

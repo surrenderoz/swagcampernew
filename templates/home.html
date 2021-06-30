@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card bg-c-red text-white widget-visitor-card">
+            <div class="card-body text-center">
+                <h2 class="text-white">{{users}}</h2>
+                <h6 class="text-white">Total user</h6>
+                <i class="feather icon-user"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card bg-c-yellow text-white widget-visitor-card">
+            <div class="card-body text-center">
+                <h2 class="text-white">{{events}}</h2>
+                <h6 class="text-white">Total Events</h6>
+                <i class="feather icon-award"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

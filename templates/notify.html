@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Send Notification</h5>
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="card-body">
+                        <form id="event-form" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-12 col-md-6 mb-2">
+                                    <h6>Select User</h6>
+                                    <select class="js-example-basic-single form-control" name="userid" requied>
+                                        {% for users in userslist %}
+                                        <option value="{{users.to_dict.uid}}">{{users.to_dict.name}}</option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="">Title</label>
+                                        <input type="text" name="title" class="form-control" id="" requied>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="">from</label>
+                                        <input type="text" name="from" class="form-control" id="" >
+                                    </div>
+                                </div>
+                        
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="" >Message</label>
+                                        <textarea class="form-control" name="message" id="" rows="3" requied></textarea>
+                                    </div>
+                               </div>
+    
+                                <button id="submitedbtn" class="btn  btn-primary" onclick="submitForm()">Send</button>
+                            </div>
+                        </form>
+                    <style>
+                        .error {
+                            background-color: rgb(209, 12, 45);
+                            color: white;
+                        }
+                        .success {
+                            background-color: rgb(12, 209, 88);
+                            color: white;
+                        }
+                    </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

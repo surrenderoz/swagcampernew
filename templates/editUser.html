@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Edit User</h5>
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="card-body">
+                        <form id="event-form" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group"> {% for val in data %}
+                                        
+                                    
+                                        <label class="floating-label" for="">User Name</label>
+                                        <input type="text" name="username" class="form-control" id="" value="{{val.to_dict.name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="">Phone </label>
+                                        <input type="number" name="userphone" class="form-control" id="" value="{{val.to_dict.phone}}" required>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <button id="submitedbtn" class="btn  btn-primary" onclick="submitForm()">Save</button>
+                                
+                            </div>
+                        </form>
+                    <style>
+                        .error {
+                            background-color: rgb(209, 12, 45);
+                            color: white;
+                        }
+                        .success {
+                            background-color: rgb(12, 209, 88);
+                            color: white;
+                        }
+                    </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

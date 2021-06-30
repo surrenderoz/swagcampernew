@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Swag Camper Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static '/' %}assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static '/' %}assets/css/plugins/select2.min.css">
+
+    <link rel="stylesheet" href="{% static '/' %}assets/css/plugins/dropzone.min.css">
+
+    <link rel="stylesheet" href="{% static '/' %}assets/css/plugins/daterangepicker.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static '/' %}assets/css/style.css">
+    <link rel="stylesheet" href="{% static '/' %}assets/css/plugins/dataTables.bootstrap4.min.css">
+
+</head>
+
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <nav class="pcoded-navbar menu-light ">
+        <div class="navbar-wrapper  ">
+            <div class="navbar-content scroll-div ">
+                <div class="">
+                    <div class="main-menu-header">
+                        <img class="img-radius" src="{% static '' %}assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
+                        <div class="user-details">
+                            <div id="more-details">Admin</div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav pcoded-inner-navbar ">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="/" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-user"></i></span><span class="pcoded-mtext">User Manager</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="{% url 'users' %}">Users List</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-phone"></i></span><span class="pcoded-mtext">Event Manager</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="{% url 'addevent' %}">Add Event</a></li>
+                            <li><a href="{% url 'eventlist' %}">Event List</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="bookinglist" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-phone"></i></span><span class="pcoded-mtext">Booking List</span></a>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-image"></i></span><span class="pcoded-mtext">Media Manager</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="{% url 'mediaupload' %}">Add Media</a></li>
+                            <li><a href="{% url 'yt' %}">Add Youtube</a></li>
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-bell"></i></span><span class="pcoded-mtext">Notification</span></a>
+                            <ul class="pcoded-submenu">
+                            <li><a href="{% url 'sendmsg' %}">Send Notification</a></li>
+                            <li><a href="{% url 'noifyview' %}">View Notification</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="{% url 'logout' %}" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-lock"></i></span><span class="pcoded-mtext">Logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+            <a href="#!" class="b-brand">
+                <!-- ========   change your logo hear   ============ -->
+                <img src="assets/images/logo.png" alt="" class="logo">
+            </a>
+            <a href="#!" class="mob-toggler">
+                <i class="feather icon-more-vertical"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Dashboard Analytics</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+    {% block content %}
+
+
+
+    {% endblock content %}
+    </div>
+    </div>
+
+    <!-- Required Js -->
+    <script src="{% static '/' %}assets/js/vendor-all.min.js"></script>
+    <script src="{% static '/' %}assets/js/plugins/bootstrap.min.js"></script>
+    <script src="{% static '/' %}assets/js/ripple.js"></script>
+    <script src="{% static '/' %}assets/js/pcoded.min.js"></script>
+<!-- select2 Js -->
+<script src="{% static '/' %}assets/js/plugins/select2.full.min.js"></script>
+<!-- form-select-custom Js -->
+<script src="{% static '/' %}assets/js/pages/form-select-custom.js"></script>
+
+<script src="{% static '/' %}assets/js/plugins/moment.min.js"></script>
+<script src="{% static '/' %}assets/js/plugins/daterangepicker.js"></script>
+<script src="{% static '/' %}assets/js/pages/ac-datepicker.js"></script>
+
+<script src="{% static '/' %}assets/js/plugins/sweetalert.min.js"></script>
+<script src="{% static '/' %}assets/js/pages/ac-alert.js"></script>
+
+<!-- datatable Js -->
+<script src="{% static '/' %}assets/js/plugins/jquery.dataTables.min.js"></script>
+<script src="{% static '/' %}assets/js/plugins/dataTables.bootstrap4.min.js"></script>
+<script>
+	$('#user-list-table').DataTable();
+</script>
+<script src="{% static '/' %}assets/js/plugins/dropzone-amd-module.min.js"></script>
+
+</body>
+
+</html>
